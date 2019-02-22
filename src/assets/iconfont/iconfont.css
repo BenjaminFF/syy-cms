@@ -1,0 +1,25 @@
+@font-face {font-family: "cms";
+  src: url('iconfont.eot?t=1550561749883'); /* IE9 */
+  src: url('iconfont.eot?t=1550561749883#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAS4AAsAAAAACLQAAARqAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCfgqFXIRrATYCJAMMCwgABCAFhDEHPBtzB1FUTaJkX2FThnuRNcSYuVjck9Xb6gXRngHgHFiBgKoIIhLgAzCUnIevMdr7u3suycTrpct4ohEJicR0PCQ8VDqNYbpavv/VpV/nvMThIqhE9uUcQpJslisrNAHNJVgBd4QpmUo8dZloYF2+PUhJUHMCE3w38M08Kr08hLK2tULIV/p8TOcv5fY/7p02lmbhfAD+52hOnFO7KKWxhkZZ4IEEqDHnAHa37LicJlCrx1HoqLy2FWSFPikQN019COSEW6kwhmqpsmBlaY8TgFSd7oRWgLve5+OrSMgkFZk+8+xG2SgUflB/h6WZ/zOQAUcBxHBBsOvImAIKcV4YPiMFmSmSWjkcZai6tQg+hP//d1Qqvtg/PEIiKul8PbRj2cQH1SIOjYBbotRZrETuF7EKbfsPLNKlzISEhsXbl26Je/PCEy0QBAjE8V1sQMk4M+1VWzaw1QCjQykMOudBpK7SOEAbeOaaeb+ep4vDv3ZHrXAZXFFc5zmoCRBYD6jM689VeAQGdGskwWx+sMJbEa8xhHC8sx9E+3lJiMfTdU6+qgjwersviVnd57o4M9igMQR0ngkhbnfnWdmKlOFydcyImB1sfbwFqFVqR5ujabQi+PFj12jo9OgCb1Z49WuPwfDLT+BDEOzCfT8bd+U+cIV5zmSqkh7cM+90A/ChdPVjgSGBE2DUQy89xgMMaC8v7/7woRz91jymI2fq6mJgYsiWJW+34X3nrf7B/+afmb+88+OgrtDCBjEdXV3tR9Mf18AxpVVyiVT7KBLlt1DQ72Ob87fq3DuN/F9f7H8t/JVVkKYPsLbIvAViGNc8g8SPaqHY0mrzHe8GTJdkadGo3Q6aY0IHM0dC2jCTHLXLnNrlkj2babfjN2GzOXOlWZogaIvFm+WUxsyW1Db0RIDaN2lzF0q1+bDvqeXtcwN3oE22bbgJNSKHRQwCU2OoKdTn8atVhUUAe3urLNQbtg//p6WawjhthUy+F61N9lr7sHdr9LDsR+Vzprmnh6tziIsnbvheJtJSr3gt7TH90LPlPIfx8vjPj20mikHghPlM30GAixlEbp7xHM+yIZb8Kt9x+vtibuTc/zK+gHcnHe9JqrlX9c2MBD9GSckFOJRCwZNLEQd4RSR7FpssoVYtLkCPt/rRXexoXEvIOiJIqnRDlvUqi3YAKtQZhkrZHNSapK2v06afJEoNJhwn2IB4D5A0egJZpafKon0NFTo9ZCsN8S2g1rmPO9YZiWO1JZwMCTKKh6ewOcI8avYVcSNu0Ez0MWeIByj6tRMemMzDKUo4ka8gHuHN5wTjekQIiilnLi5veR5xHIZ9ziwyIhRDCD9bVWnRk5QR5kKcQxwxRCBGYcOmYKYRjIc65wpxrnIFmhG6MY4hPEsg1Y7gHm82rsVSKMLFygreq2o7xX6BcboIQaAwimNcFCuflCVKpYPB/OJhFmKEoDA6pHzZVKMbbcorixfdO8hCB/ojOVLkKKpuESFMT5d9NkE4oxQAAAA=') format('woff2'),
+  url('iconfont.woff?t=1550561749883') format('woff'),
+  url('iconfont.ttf?t=1550561749883') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1550561749883#cms') format('svg'); /* iOS 4.1- */
+}
+
+.cms {
+  font-family: "cms" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sky-setting:before {
+  content: "\e62f";
+}
+
+.sky-poweroff:before {
+  content: "\e630";
+}
+

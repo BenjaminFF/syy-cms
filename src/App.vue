@@ -16,7 +16,7 @@
           </template>
           <el-menu-item index="/alluser-manage" class="m-el-submenu-item">全部用户</el-menu-item>
         </el-submenu>
-        <el-submenu index="1" style="color: white">
+        <el-submenu index="1" style="color: white" :disabled="!isSuperAccess">
           <template slot="title">
             <span>后台管理员</span>
           </template>
@@ -44,7 +44,8 @@
     data() {
       return {
         defaultActive: '',
-        username:''
+        isSuperAccess:false,
+        username:""
       }
     },
     created() {
@@ -53,8 +54,11 @@
     methods: {
       init() {
         this.defaultActive = this.$route.path == '/' ? '/alluser-manage' : this.$route.path;
-        let userInfo=localStorage.getItem('userInfo');
-        this.username=JSON.parse(userInfo).Name;
+        this.userInfo=JSON.parse(localStorage.getItem('userInfo'));
+        if(this.userInfo!=null){
+          this.isSuperAccess=this.userInfo.Accessset.Id==1?true:false;
+          this.username=this.userInfo.Name;
+        }
       },
       linkTo(path) {
         this.$router.push(path);
@@ -67,8 +71,16 @@
           console.log('gg');
         });
       },
-      flushELMenu(){
+      flushELMenu(to,from){
+        console.log(from.path);
         this.$refs.myELmenu.activeIndex=this.$route.path;
+        this.userInfo=JSON.parse(localStorage.getItem('userInfo'));
+        if(from.path=='/login'){
+          if(this.userInfo!=null){
+            this.isSuperAccess=this.userInfo.Accessset.Id==1?true:false;
+            this.username=this.userInfo.Name;
+          }
+        }
       }
     },
     watch:{

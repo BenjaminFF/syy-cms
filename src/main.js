@@ -8,6 +8,28 @@ import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+import VueParticles from 'vue-particles'
+Vue.use(VueParticles)
+
+axios.interceptors.response.use(
+  response => {
+    let userInfo=localStorage.getItem('userInfo');
+    if(userInfo!=null){
+      if(response.data==-3||response.data==-4){
+        localStorage.removeItem('userInfo');
+        return response;
+      }
+      let updatedUserInfo= JSON.parse(userInfo);
+      updatedUserInfo.loginTime=Date.now();
+      localStorage.setItem('userInfo',JSON.stringify(updatedUserInfo));
+    }
+    return response;
+  },
+  err => {
+    return Promise.reject(err);
+  }
+);
+
 Vue.use(VueAxios, axios)
 
 Vue.config.productionTip = false

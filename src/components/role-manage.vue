@@ -34,7 +34,7 @@
         <el-form-item label="权限" prop="checkedAccesses">
           <el-checkbox-group
             v-model="addRoleInfo.checkedAccesses">
-            <el-checkbox v-for="access in accessOptions" :label="access.value" name="checkedAccesses"
+            <el-checkbox v-for="access in accessOptions" :label="access.value" name="checkedAccesses" :disabled="access.disabled"
                          v-model="access.value">{{access.label}}
             </el-checkbox>
           </el-checkbox-group>
@@ -49,7 +49,7 @@
       title="编辑角色"
       :visible.sync="editDialogVisible"
       width="30rem">
-      <el-form ref="mForm" :model="curRole" label-width="80px" :rules="addRoleInfoRules">
+      <el-form ref="mEditForm" :model="curRole" label-width="80px" :rules="editRoleInfoRules">
         <el-form-item label="角色名" prop="Name">
           <el-input v-model="curRole.Name"></el-input>
         </el-form-item>
@@ -59,7 +59,7 @@
         <el-form-item label="权限" prop="checkedAccesses">
           <el-checkbox-group
             v-model="curRole.checkedAccesses">
-            <el-checkbox v-for="access in accessOptions" :label="access.value" name="checkedAccesses"
+            <el-checkbox v-for="access in accessOptions" :label="access.value" name="checkedAccesses" :disabled="access.disabled"
                          v-model="access.label">{{access.label}}
             </el-checkbox>
           </el-checkbox-group>
@@ -67,14 +67,14 @@
       </el-form>
       <span slot="footer" class="dialog-footer">
     <el-button @click="editDialogVisible=false">取 消</el-button>
-    <el-button type="primary" @click="editRoleToServer('mForm')" :loading="isUploading">确定</el-button>
+    <el-button type="primary" @click="editRoleToServer('mEditForm')" :loading="isUploading">确定</el-button>
   </span>
     </el-dialog>
     <el-dialog
       title="提示"
       :visible.sync="delDialogVisible"
       width="30%">
-      <span>确认删除这个角色吗？</span>
+      <span>确认删除这个角色和所属这个角色下所有用户吗？</span>
       <span slot="footer" class="dialog-footer">
     <el-button @click="delDialogVisible = false">取 消</el-button>
     <el-button type="primary" @click="deleteRoleToServer" :loading="isUploading">删除</el-button>
@@ -132,20 +132,27 @@
             {type: 'array', required: true, message: '请至少选择一个权限', trigger: 'change'}
           ]
         }
+        this.editRoleInfoRules = {
+          Name: [
+            {message: '角色名不能为空', trigger: 'blur', required: true, min: 1},
+          ],
+          checkedAccesses: [
+            {type: 'array', required: true, message: '请至少选择一个权限', trigger: 'change'}
+          ]
+        }
         this.accessOptions = [
-          {label: '用户管理', value: 1},
-          {label: '角色管理', value: 2},
-          {label: '管理员管理', value: 3},
-          {label: '资源地址管理', value: 4},
-          {label: '直播地址管理', value: 5},
-          {label: '应用服务器地址管理', value: 6},
-          {label: 'Test权限', value: 61}
+          {label: '用户管理', value: 1,disabled:false},
+          {label: '角色管理', value: 2,disabled:true},
+          {label: '管理员管理', value: 3,disabled:true},
+          {label: '资源地址管理', value: 4,disabled:false},
+          {label: '直播地址管理', value: 5,disabled:false},
+          {label: '应用服务器地址管理', value: 6,disabled:false},
+          {label: 'Test权限', value: 61,disabled:false}
         ]
       },
       fetchData() {
         this.axios.get('/ssnwtweb/api/accesssets/list', {transformResponse: [data => data]}).then((res) => {
           let roles = JSONBigInt.parse(res.data);
-          console.log(roles);
           let filteredRoles = [];
           roles.forEach((role) => {
             if (role.Access.toString() != math.eval('1<<62').toString()) {
@@ -252,7 +259,16 @@
             Description: '',
             checkedAccesses: []
           }
-          this.$refs.mForm.resetFields();
+          setTimeout(()=>{
+            this.$refs.mForm.resetFields();
+          },500);
+        }
+      },
+      editDialogVisible() {
+        if (!this.editDialogVisible) {
+          setTimeout(()=>{
+            this.$refs.mEditForm.resetFields();
+          },500);
         }
       }
     }

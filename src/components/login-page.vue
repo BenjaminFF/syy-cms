@@ -30,7 +30,7 @@
       </el-form-item>
       <el-form-item prop="captcha">
         <el-input v-model="formData.captcha" placeholder="验证码"></el-input>
-        <img :src="'http://192.168.1.108:8081'+captchaData.Url" @click="flushCaptcha"
+        <img :src="'http://192.168.1.108:8081/'+captchaData.Url" @click="flushCaptcha"
              style="width: 5rem;height: 100%;position: absolute;right: 0;top:0;cursor: pointer">
       </el-form-item>
       <el-form-item>
@@ -57,9 +57,7 @@
       this.init();
     },
     mounted() {
-      this.axios.get('/ssnwtweb/api/admins/list').then((res) => {
-        console.log(res.data);
-      });
+
     },
     methods: {
       init() {
@@ -106,7 +104,7 @@
         let config = {
           headers: {'Content-Type': 'multipart/form-data'}
         };
-        this.axios.post('/ssnwtweb/api/admins/login', formData, config).then((res) => {
+        this.axios.post('/ssnwtweb/admins/login', formData, config).then((res) => {
           this.isValidating = false;
           console.log(res.data);
           if (typeof res.data == 'object') {
@@ -133,7 +131,7 @@
         });
       },
       flushCaptcha() {
-        this.axios.get('/ssnwtweb/api/admins/getcaptcha').then((res) => {
+        this.axios.get('/ssnwtweb/admins/getcaptcha').then((res) => {
           this.captchaData = res.data;
         });
       }

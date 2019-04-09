@@ -16,7 +16,7 @@
           </template>
           <el-menu-item index="/alluser-manage" class="m-el-submenu-item">全部用户</el-menu-item>
         </el-submenu>
-        <el-submenu index="1" style="color: white" :disabled="!isSuperAccess">
+        <el-submenu index="1" style="color: white" v-if="isSuperAccess">
           <template slot="title">
             <span>后台管理员</span>
           </template>
@@ -68,7 +68,6 @@
         this.axios.get('/ssnwtweb/api/admins/logout').then((res)=>{
           localStorage.removeItem('userInfo');
           this.$router.push('/');
-          console.log('gg');
         });
       },
       flushELMenu(to,from){
@@ -93,7 +92,7 @@
 <style>
   @import "assets/iconfont/iconfont.css";
   @import "assets/lib/index.css";
-  @import "../sk-theme/lib/index.css";
+  /*@import "../sk-theme/lib/index.css";*/
   @import "../node_modules/animate.css/animate.css";
 
   body, html {
